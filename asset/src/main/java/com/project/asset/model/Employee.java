@@ -1,21 +1,21 @@
 package com.project.asset.model;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
 public class Employee {
     @Id
     @Column
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int emp_id;
+
     @Column
     private String emp_name;
+
     @Column
     private String designation;
-
-
-    @ManyToOne
-    @JoinColumn(name = "Assets.asset_id")
-    private Assets assets;
 
     public int getEmp_id() {
         return emp_id;

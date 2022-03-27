@@ -1,28 +1,26 @@
 package com.project.asset.model;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table
 public class Category {
     @Id
     @Column
-    private int cat_id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
+
     @Column
     private String cat_name;
+
     @Column
     private String description;
 
-    @OneToMany(mappedBy = "Category")
-    private List<Assets> listAssets = new ArrayList<>();
-
-    public int getCat_id() {
-        return cat_id;
+    public int getId() {
+        return id;
     }
 
-    public void setCat_id(int cat_id) {
-        this.cat_id = cat_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCat_name() {

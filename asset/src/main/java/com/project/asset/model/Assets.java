@@ -2,28 +2,31 @@ package com.project.asset.model;
 import com.project.asset.shared.AssignStatus;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Table
 public class Assets {
     @Id
     @Column
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int asset_id;
+
     @Column
     private String asset_name;
+
     @Column
     private Date purchase_date;
+
     @Column
     private AssignStatus assignStatus;
 
-    @OneToMany(mappedBy = "Assets")
-    private List<Assets> listEmployees = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "emp_id", nullable = true)
+    private Employee employee;
 
     @ManyToOne
-    @JoinColumn(name = "category.cat_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public int getAsset_id() {
@@ -58,5 +61,15 @@ public class Assets {
         this.assignStatus = assignStatus;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
+    public void setEmployee(Employee employee){
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return this.employee;
+    }
 }

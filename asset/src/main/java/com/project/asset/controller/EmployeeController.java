@@ -1,7 +1,7 @@
 package com.project.asset.controller;
 
 
-import com.project.asset.model.Category;
+import com.project.asset.service.EmployeeService;
 import com.project.asset.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,16 +17,15 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @GetMapping("/employee")
-    private List<Category> getAllEmployee()
+    private List<Employee> getAllEmployee()
     {
         return employeeService.getAllEmployee();
     }
 
     @PostMapping("/employee")
-    private int saveEmployee(@RequestBody Employee employee)
+    private void saveEmployee(@RequestBody Employee employee)
     {
         employeeService.saveOrUpdate(employee);
-        return employee.get(emp_id);
     }
 
 }

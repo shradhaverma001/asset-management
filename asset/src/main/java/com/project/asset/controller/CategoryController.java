@@ -1,10 +1,9 @@
 package com.project.asset.controller;
-
 import java.util.List;
 import com.project.asset.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.project.asset.service.CategoryService;
 
 @RestController
 public class CategoryController {
@@ -12,7 +11,7 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping("/category")
-    private List<Category> getAllBooks()
+    private List<Category> getAllCategory()
     {
         return categoryService.getAllCategory();
     }
@@ -25,10 +24,9 @@ public class CategoryController {
     }
 
     @PostMapping("/category")
-    private int saveCategory(@RequestBody Category category)
+    private void saveCategory(@RequestBody Category category)
     {
         categoryService.saveOrUpdate(category);
-        return category.getCat_id();
     }
 
 }
